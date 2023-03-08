@@ -98,6 +98,9 @@ def get_aver_grade_by_lecturers(lecturers, course):
 #студент 1
 best_student = Student('Ruoy', 'Eman', 'your_gender')
 best_student.courses_in_progress += ['Python']
+best_student.courses_in_progress += ['Git']
+best_student.finished_courses += ['Введение в программирование']
+
 
 #студент 2
 best_student_second = Student('Silvestr', 'Stalone', 'your_gender')
