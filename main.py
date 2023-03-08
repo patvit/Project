@@ -48,7 +48,13 @@ class Lecturer(Mentor):
     }
 
     def __str__(self):
-        num = mean(self.grades_bystydent['Python'])
+        num = 0
+        count = 0
+        for x in self.grades_bystydent:
+            num += sum(self.grades_bystydent[x])
+            count += len(self.grades_bystydent[x])
+        num = num / count
+
         res = f'Имя: {self.name} \nФамлиия: {self.surname}\nСредняя оценка за лекции:{num}'
         return res
 
