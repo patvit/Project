@@ -20,7 +20,12 @@ class Student:
             return 'Ошибка'
 
     def __str__(self):
-        num = mean(self.grades['Python'])
+        num = 0
+        count = 0
+        for x in self.grades:
+            num += sum(self.grades[x])
+            count += len(self.grades[x])
+        num = num / count
         res = f'Имя: {self.name} \nФамлиия: {self.surname}\nСредняя оценка за домашние задания:{num}\nКурсы в процессе изучения:{self.courses_in_progress}\nЗавершенные курсы:{self.finished_courses} '
         return res
 
@@ -36,23 +41,11 @@ class Mentor:
         self.surname = surname
         self.courses_attached = []
 
-    # def rate_hw(self, student, course, grade):
-    #     if isinstance(student, Student) and course in self.courses_attached and course in student.courses_in_progress:
-    #         if course in student.grades:
-    #             student.grades[course] += [grade]
-    #         else:
-    #             student.grades[course] = [grade]
-    #     else:
-    #         return 'Ошибка'
 
 class Lecturer(Mentor):
 
     grades_bystydent = {
     }
-    # def __init__(self, name, surname):
-    #     self.grades_bystydent = {
-    #     #    course : [] #ключи – названия курсов, а значения – списки оценок
-    #         }
 
     def __str__(self):
         num = mean(self.grades_bystydent['Python'])
@@ -109,6 +102,9 @@ best_student_second.courses_in_progress += ['Python']
 #проверяющий 1
 cool_reviewer = Reviewer('Some', 'Buddy')
 cool_reviewer.courses_attached += ['Python']
+cool_reviewer.courses_attached += ['Git']
+
+
 
 #проверяющий 2
 cool_reviewer_second = Reviewer('Arnolnd', 'Shvarzneyger')
@@ -125,12 +121,19 @@ cool_lecturer_second.courses_attached += ['Python']
 cool_reviewer.rate_hw(best_student, 'Python', 10)
 cool_reviewer.rate_hw(best_student, 'Python', 10)
 cool_reviewer.rate_hw(best_student, 'Python', 10)
+cool_reviewer.rate_hw(best_student, 'Git', 5)
+
 
 cool_reviewer.rate_hw(best_student_second, 'Python', 9)
 cool_reviewer.rate_hw(best_student_second, 'Python', 9)
 cool_reviewer.rate_hw(best_student_second, 'Python', 9)
+
+print(best_student.name)
 
 print(best_student.grades)
+print(best_student.courses_in_progress)
+print(best_student.finished_courses)
+
 
 best_student.rate_lecturer_hw(cool_lecturer, 'Python', 10)
 best_student.rate_lecturer_hw(cool_lecturer, 'Python', 10)
